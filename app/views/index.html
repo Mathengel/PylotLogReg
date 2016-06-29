@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+            <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <style>
+
+      .form-control{
+        width: 80%;
+      }
+      .error{
+            color: red;
+            border: none;
+        }
+      .success{
+          color: green;
+          border: none;
+      }
+      .forms{
+            width: 40%;
+            padding: 25px;
+            display: inline-block;
+            vertical-align: top;
+        }
+        h1{
+            color: #243C4C;
+            font-weight: bold;
+        }
+        h3{
+            color: #3F1D0B;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome!</h1>
+    <div class="forms">
+    <h3>Like to register?</h3>
+    <hr>
+      <form  action="/register" method="POST"> 
+
+        {%with message = get_flashed_messages(category_filter=['regname']) %}
+            {% if message %}
+            {% for msg in message %}
+                    <p class="error">{{ msg }}</p>
+            {% endfor %}
+            {% endif %}
+        {% endwith %} 
+
+        <div class="form-group">
+          <label class="sr-only" for="exampleInputEmail3">Name</label>
+          <input name="name" type="text" class="form-control" id="exampleInputEmail3" placeholder="name">
+        </div>
+        
+        {%with message = get_flashed_messages(category_filter=['regalias']) %}
+            {% if message %}
+            {% for msg in message %}
+                    <p class="error">{{ msg }}</p>
+            {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <div class="form-group">
+          <label class="sr-only" for="exampleInputPassword3">Alias</label>
+          <input name ="alias" type="text" class="form-control" id="exampleInputPassword3" placeholder="alias">
+        </div>
+        
+        {%with message = get_flashed_messages(category_filter=['regemail']) %}
+            {% if message %}
+            {% for msg in message %}
+                    <p class="error">{{ msg }}</p>
+            {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="form-group">
+          <label class="sr-only" for="exampleInputPassword3">Email</label>
+          <input name ="email" type="text" class="form-control" id="exampleInputPassword3" placeholder="email">
+        </div>
+
+        {%with message = get_flashed_messages(category_filter=['regpassword']) %}
+            {% if message %}
+            {% for msg in message %}
+                    <p class="error">{{ msg }}</p>
+            {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="form-group">
+          <label class="sr-only" for="exampleInputPassword3">Password</label>
+          <input name ="password" type="password" class="form-control" id="exampleInputPassword3" placeholder="password">
+        </div>
+        
+        {%with message = get_flashed_messages(category_filter=['regconfirm']) %}
+            {% if message %}
+            {% for msg in message %}
+                    <p class="error">{{ msg }}</p>
+            {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="form-group">
+          <label class="sr-only" for="exampleInputPassword3">Password Confirmation</label>
+          <input name ="passwordconfirmation" type="password" class="form-control" id="exampleInputPassword3" placeholder="one more time">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Register!</button>
+      </form>
+
+    </div>
+
+<!-- LOG IN -->      
+
+    <div class="forms">
+
+        <h3>Been here, done that?</h3>
+        <hr>
+        {%with message = get_flashed_messages(category_filter=['loginerror']) %}
+            {% if message %}
+            {% for msg in message %}
+                    <p class="error">{{ msg }}</p>
+            {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form action="/login" method="POST">
+        
+        <div class="form-group">
+          <label class="sr-only" for="exampleInputPassword3">Email</label>
+          <input name ="email" type="text" class="form-control" id="exampleInputPassword3" placeholder="email">
+        </div>
+
+        <div class="form-group">
+          <label class="sr-only" for="exampleInputPassword3">Password</label>
+          <input name ="password" type="password" class="form-control" id="exampleInputPassword3" placeholder="password">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Login!</button>
+
+      </form>
+
+    </div>
+    
+</body>
+</html>
